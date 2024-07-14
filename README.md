@@ -8,8 +8,6 @@ This is a demo Spring Boot application created for academic purposes. It provide
 - [Technologies](#technologies)
 - [Setup](#setup)
 - [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -23,45 +21,38 @@ This is a demo Spring Boot application created for academic purposes. It provide
 - Spring Data JPA
 - Lombok
 - Jackson
+- MySQL
 
 ## Setup
 
 1. Clone the repository:
-    ```sh
-    git clone https://github.com/yourusername/demo-spring-boot.git
+    ```bash
+    git clone https://github.com/your-username/demo-spring-boot.git
     cd demo-spring-boot
     ```
 
-2. Build the project:
-    ```sh
-    mvn clean install
+2. Configure the database connection in `src/main/resources/application.yml`:
+    ```yaml
+    spring:
+      datasource:
+        url: jdbc:mysql://localhost:3306/student_crm
+        username: root
+        password: your_password
+      jpa:
+        hibernate:
+          ddl-auto: update
     ```
 
 3. Run the application:
-    ```sh
-    mvn spring-boot:run
+    ```bash
+    ./mvnw spring-boot:run
     ```
-
-4. The application will be available at `http://localhost:8080`.
 
 ## API Endpoints
 
-### City API
+- **City Controller**
+    - `GET /city/{postalCode}`: Get city information by postal code.
 
-- **Get City by Postal Code**
-    - **URL:** `/city/{postalCode}`
-    - **Method:** `GET`
-    - **Response:** JSON object with city information
-
-### Student API
-
-- **Save Student**
-    - **URL:** `/student`
-    - **Method:** `POST`
-    - **Request Body:** JSON object with student details
-    - **Response:** `200 OK` on success
-
-- **Get All Students**
-    - **URL:** `/student`
-    - **Method:** `GET`
-    - **Response:** JSON array of student records
+- **Student Controller**
+    - `POST /student`: Save a new student record.
+    - `GET /student`: Retrieve all student records.
